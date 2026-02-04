@@ -5,20 +5,64 @@ import '../styles/global.css';
 
 interface Props {
   title: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title } = Astro.props;
+const props = Astro.props as Props;
+
+const title = props.title;
+const description =
+  props.description ??
+  "Andrew Amelinckx is a freelance journalist and author of the historical true-crime book Satellite Boy. Former award-winning investigative crime reporter for the Pulitzer Prize–winning Berkshire Eagle.";
+const ogImage = props.ogImage ?? "/og-image.jpg";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <title>{title}</title>
-  </head>
+  <!-- Primary SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph (used by Google + everything sane) -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://andrewamelinckx.com" />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/icon.png" />
+
+  <!-- Structured Data: Person + Book -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Andrew Amelinckx",
+      "url": "https://andrewamelinckx.com",
+      "jobTitle": "Freelance Journalist",
+      "description":
+        "Freelance journalist and author of the historical true-crime book Satellite Boy. Former award-winning investigative crime reporter for the Pulitzer Prize-winning Berkshire Eagle.",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Pratt Institute"
+      },
+      "works": {
+        "@type": "Book",
+        "name": "Satellite Boy",
+        "author": {
+          "@type": "Person",
+          "name": "Andrew Amelinckx"
+        }
+      }
+    })}
+  </script>
+</head>
  <body class="bg-background text-text font-family-body min-h-screen flex flex-col">
   <Navbar />
 
