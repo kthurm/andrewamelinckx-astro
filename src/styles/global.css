@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #f47857;
+  --color-primary: #ee694a;
   --color-secondary: #aa482f;
   --color-background: #faf6eb;
   --color-text: #333333;
@@ -49,6 +49,11 @@
 
   h2 {
     @apply text-xl font-bold text-[#663e2f];
+  }
+
+  h3 {
+    @apply text-lg font-bold  text-primary pt-3 pb-0 mb-0;
+    font-family: var(--font-family-body);
   }
 
   h4 {
