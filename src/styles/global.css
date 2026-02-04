@@ -51,6 +51,11 @@
     @apply text-xl font-bold text-[#663e2f];
   }
 
+  h3 {
+    @apply text-lg font-bold  text-primary pt-3 pb-0 mb-0;
+    font-family: var(--font-family-body);
+  }
+
   h4 {
     @apply text-lg font-bold leading-tight;
   }
