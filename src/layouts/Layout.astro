@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro'
 
 interface Props {
   title: string;
@@ -62,6 +63,7 @@ const ogImage = props.ogImage ?? "/og-image.jpg";
       }
     })}
   </script>
+      <Analytics />
 </head>
  <body class="bg-background text-text font-family-body min-h-screen flex flex-col">
   <Navbar />
