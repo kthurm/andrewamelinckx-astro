@@ -39,30 +39,34 @@ const ogImage = props.ogImage ?? "/og-image.jpg";
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/icon.png" />
 
-  <!-- Structured Data: Person + Book -->
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Andrew Amelinckx",
-      "url": "https://andrewamelinckx.com",
-      "jobTitle": "Freelance Journalist",
-      "description":
-        "Andrew Amelinckx is a freelance journalist, award-winning investigative crime reporter and author of the true-crime book Satellite Boy",
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Pratt Institute"
+ <script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://andrewamelinckx.com/#person",
+        "name": "Andrew Amelinckx",
+        "url": "https://andrewamelinckx.com",
+        "jobTitle": "Freelance Journalist",
+        "description": "Freelance journalist, award-winning investigative crime reporter and author",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Pratt Institute"
+        }
       },
-      "works": {
+      {
         "@type": "Book",
         "name": "Satellite Boy",
         "author": {
-          "@type": "Person",
-          "name": "Andrew Amelinckx"
-        }
+          "@id": "https://andrewamelinckx.com/#person"
+        },
+        "genre": "True Crime"
       }
-    })}
-  </script>
+    ]
+  })}
+/>
       <Analytics />
 </head>
  <body class="bg-background text-text font-family-body min-h-screen flex flex-col">
